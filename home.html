@@ -12,7 +12,39 @@
         nav a { color: white; padding: 1em; text-decoration: none; }
         nav a.disabled { color: #aaa; pointer-events: none; }
         nav a:hover:not(.disabled) { background-color: #555; }
-        .hero { background-color: #eee; padding: 2em; text-align: center; }
+
+        .hero {
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+        }
+        .scrolling-images {
+            display: flex;
+            width: calc(250px * 16); /* 8 images repeated twice for smooth loop */
+            animation: scroll-left 30s linear infinite;
+        }
+        .scrolling-images img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1em;
+            border-radius: 10px;
+            text-align: center;
+        }
+
         .content { padding: 2em; }
         .section { margin-bottom: 2em; }
         .footer-text { font-size: 0.9em; }
@@ -36,12 +68,33 @@
    </a>
   </nav>
   <div class="hero">
-   <h2>
-    Welcome to the Art Group Website
-   </h2>
-   <p>
-    Celebrating student creativity and promoting our exhibitions.
-   </p>
+   <div class="scrolling-images">
+    <img alt="Art 1" src="https://via.placeholder.com/250?text=Art+1"/>
+    <img alt="Art 2" src="https://via.placeholder.com/250?text=Art+2"/>
+    <img alt="Art 3" src="https://via.placeholder.com/250?text=Art+3"/>
+    <img alt="Art 4" src="https://via.placeholder.com/250?text=Art+4"/>
+    <img alt="Art 5" src="https://via.placeholder.com/250?text=Art+5"/>
+    <img alt="Art 6" src="https://via.placeholder.com/250?text=Art+6"/>
+    <img alt="Art 7" src="https://via.placeholder.com/250?text=Art+7"/>
+    <img alt="Art 8" src="https://via.placeholder.com/250?text=Art+8"/>
+    <!-- Repeat to make a loop -->
+    <img alt="Art 1" src="https://via.placeholder.com/250?text=Art+1"/>
+    <img alt="Art 2" src="https://via.placeholder.com/250?text=Art+2"/>
+    <img alt="Art 3" src="https://via.placeholder.com/250?text=Art+3"/>
+    <img alt="Art 4" src="https://via.placeholder.com/250?text=Art+4"/>
+    <img alt="Art 5" src="https://via.placeholder.com/250?text=Art+5"/>
+    <img alt="Art 6" src="https://via.placeholder.com/250?text=Art+6"/>
+    <img alt="Art 7" src="https://via.placeholder.com/250?text=Art+7"/>
+    <img alt="Art 8" src="https://via.placeholder.com/250?text=Art+8"/>
+   </div>
+   <div class="hero-text">
+    <h2>
+     Welcome to the Art Group Website
+    </h2>
+    <p>
+     Celebrating student creativity and promoting our exhibitions.
+    </p>
+   </div>
   </div>
   <div class="content">
    <div class="section">
