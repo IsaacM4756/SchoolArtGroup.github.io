@@ -1,1 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Gallery - Art Group
+  </title>
+  <style>
+   body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+        header, footer { background-color: #333; color: white; padding: 1em; text-align: center; }
+        nav { background-color: #444; display: flex; justify-content: center; }
+        nav a { color: white; padding: 1em; text-decoration: none; }
+        nav a:hover { background-color: #555; }
+        .content { padding: 2em; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1em; }
+        .gallery-item { position: relative; cursor: pointer; }
+        .gallery-item img { width: 100%; border-radius: 6px; }
+        .caption { text-align: center; font-size: 0.85em; margin-top: 0.3em; color: #444; }
 
+        /* Modal styles */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; 
+                 overflow: auto; background-color: rgba(0,0,0,0.8); }
+        .modal-content { background-color: #fff; margin: 10% auto; padding: 2em; width: 90%; max-width: 600px; border-radius: 10px; position: relative; }
+        .modal-content img { width: 100%; border-radius: 10px; }
+        .close { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close:hover { color: black; }
+        .art-details { margin-top: 1em; font-size: 0.95em; }
+  </style>
+ </head>
+ <body>
+  <header>
+   <h1>
+    Art Group Gallery
+   </h1>
+  </header>
+  <nav>
+   <a href="art_group_home_scrolling.html">
+    Home
+   </a>
+   <a class="disabled" href="#">
+    Gallery
+   </a>
+   <a href="events.html">
+    Events
+   </a>
+  </nav>
+  <div class="content">
+   <div class="gallery">
+    <!-- Gallery Items -->
+    <div class="gallery-item" onclick="openModal(0)">
+     <img alt="Artwork 1" src="https://via.placeholder.com/300?text=Artwork+1"/>
+     <div class="caption">
+      Sunset Dreams
+     </div>
+    </div>
+    <div class="gallery-item" onclick="openModal(1)">
+     <img alt="Artwork 2" src="https://via.placeholder.com/300?text=Artwork+2"/>
+     <div class="caption">
+      Nature’s Whisper
+     </div>
+    </div>
+    <div class="gallery-item" onclick="openModal(2)">
+     <img alt="Artwork 3" src="https://via.placeholder.com/300?text=Artwork+3"/>
+     <div class="caption">
+      Urban Flow
+     </div>
+    </div>
+    <div class="gallery-item" onclick="openModal(3)">
+     <img alt="Artwork 4" src="https://via.placeholder.com/300?text=Artwork+4"/>
+     <div class="caption">
+      Silent Bloom
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal" id="artModal">
+   <div class="modal-content">
+    <span class="close" onclick="closeModal()">
+     ×
+    </span>
+    <img alt="Artwork" id="modalImage" src=""/>
+    <div class="art-details" id="artDetails">
+    </div>
+   </div>
+  </div>
+  <footer>
+   <p>
+    © 2025 School Art Group | Contact us at artgroup@school.edu.au
+   </p>
+  </footer>
+  <script>
+   const artworks = [
+        {
+            src: "https://via.placeholder.com/300?text=Artwork+1",
+            title: "Sunset Dreams",
+            artist: "Alex T.",
+            description: "A peaceful landscape of a dreamy sunset blending soft hues of orange and purple.",
+            year: "2025",
+            medium: "Acrylic on canvas"
+        },
+        {
+            src: "https://via.placeholder.com/300?text=Artwork+2",
+            title: "Nature’s Whisper",
+            artist: "Bella R.",
+            description: "A detailed drawing of forest wildlife capturing the tranquility of nature.",
+            year: "2025",
+            medium: "Pencil and ink"
+        },
+        {
+            src: "https://via.placeholder.com/300?text=Artwork+3",
+            title: "Urban Flow",
+            artist: "Chris M.",
+            description: "Abstract take on city life using geometric patterns and neon colors.",
+            year: "2025",
+            medium: "Digital Art"
+        },
+        {
+            src: "https://via.placeholder.com/300?text=Artwork+4",
+            title: "Silent Bloom",
+            artist: "Dana Y.",
+            description: "A minimalist floral piece symbolizing quiet growth and resilience.",
+            year: "2025",
+            medium: "Watercolor on paper"
+        }
+    ];
+
+    function openModal(index) {
+        const modal = document.getElementById('artModal');
+        const modalImage = document.getElementById('modalImage');
+        const artDetails = document.getElementById('artDetails');
+
+        const art = artworks[index];
+        modalImage.src = art.src;
+        artDetails.innerHTML = `
+            <h3>${art.title}</h3>
+            <p><strong>Artist:</strong> ${art.artist}</p>
+            <p><strong>Year:</strong> ${art.year}</p>
+            <p><strong>Medium:</strong> ${art.medium}</p>
+            <p>${art.description}</p>
+        `;
+
+        modal.style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('artModal').style.display = 'none';
+    }
+
+    // Close modal on outside click
+    window.onclick = function(event) {
+        const modal = document.getElementById('artModal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+  </script>
+ </body>
+</html>
