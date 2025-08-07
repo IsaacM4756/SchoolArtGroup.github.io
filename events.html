@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Events - Art Group</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
+        header, footer { background-color: #333; color: white; padding: 1em; text-align: center; }
+        nav { background-color: #444; display: flex; justify-content: center; }
+        nav a { color: white; padding: 1em; text-decoration: none; }
+        nav a.disabled { color: #aaa; pointer-events: none; }
+        nav a:hover:not(.disabled) { background-color: #555; }
 
+        .content { padding: 2em; }
+        .event { background-color: #fff; padding: 1.5em; margin-bottom: 2em; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .event h2 { margin-top: 0; }
+        .event-info { margin-top: 1em; line-height: 1.6; }
+        .event-image { max-width: 100%; border-radius: 10px; margin-top: 1em; }
+        .how-to-join { background-color: #eef6ff; padding: 1.5em; border-left: 5px solid #4285f4; border-radius: 6px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Art Group Events</h1>
+</header>
+
+<nav>
+    <a href="art_group_home_scrolling.html">Home</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="#" class="disabled">Events</a>
+</nav>
+
+<div class="content">
+    <div class="event">
+        <h2>📅 Term 4 Art Showcase</h2>
+        <div class="event-info">
+            <p><strong>Date:</strong> November 5, 2025</p>
+            <p><strong>Time:</strong> 4:00 PM – 6:30 PM</p>
+            <p><strong>Location:</strong> School Auditorium, Main Building</p>
+            <img src="https://via.placeholder.com/800x400?text=School+Auditorium" alt="School Auditorium" class="event-image">
+        </div>
+    </div>
+
+    <div class="how-to-join">
+        <h3>Want to Show Off Your Art?</h3>
+        <p>If you're a student artist and want to join our exhibition, simply email a photo of your artwork along with your full name, year level, and a short description of your work.</p>
+        <p><strong>Email:</strong> artgroup@school.edu.au</p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 School Art Group | Contact us at artgroup@school.edu.au</p>
+</footer>
+
+</body>
+</html>
