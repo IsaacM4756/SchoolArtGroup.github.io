@@ -40,27 +40,44 @@
    <a href="events.html">Events</a>
   </nav>
   <div class="content">
+   <div class="filter">
+  <label for="yearFilter"><strong>Filter by Year Level:</strong></label>
+  <select id="yearFilter" onchange="filterGallery()">
+    <option value="all">All</option>
+    <option value="Year 7">Year 7</option>
+    <option value="Year 8">Year 8</option>
+    <option value="Year 9">Year 9</option>
+    <option value="Year 10">Year 10</option>
+    <option value="Year 11">Year 11</option>
+    <option value="Year 12">Year 12</option>
+  </select>
+</div>
+
+
+
+
+   
    <div class="gallery">
     <!-- Gallery Items -->
-    <div class="gallery-item" onclick="openModal(0)">
+    <div class="gallery-item" data-year="Year 10" onclick="openModal(0)">
      <img alt="Artwork 1" src="MonaLisa.jpg"/>
      <div class="caption">
       Leonardo da Vinci
      </div>
     </div>
-    <div class="gallery-item" onclick="openModal(1)">
+    <div class="gallery-item" data-year="Year 12" onclick="openModal(1)">
      <img alt="Artwork 2" src="StarryNight.jpg"/>
      <div class="caption">
       Vincent van Gogh
      </div>
     </div>
-    <div class="gallery-item" onclick="openModal(2)">
+    <div class="gallery-item" data-year="Year 11" onclick="openModal(2)">
      <img alt="Artwork 3" src="VincentVanGogh.jpg"/>
      <div class="caption">
       Vincent Van Gogh
      </div>
     </div>
-    <div class="gallery-item" onclick="openModal(3)">
+    <div class="gallery-item" data-year="Year 8" onclick="openModal(3)">
      <img alt="Artwork 4" src="GirlWithAPearlEarring.webp"/>
      <div class="caption">
       Johannes Vermeer
@@ -150,5 +167,23 @@
         }
     }
   </script>
+
+
+  <script>
+function filterGallery() {
+    const filter = document.getElementById("yearFilter").value;
+    const items = document.getElementsByClassName("gallery-item");
+
+    for (let i = 0; i < items.length; i++) {
+        const year = items[i].getAttribute("data-year");
+        if (filter === "all" || year === filter) {
+            items[i].style.display = "block";
+        } else {
+            items[i].style.display = "none";
+        }
+    }
+}
+</script>
+
  </body>
 </html>
