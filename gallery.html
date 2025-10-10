@@ -2,10 +2,9 @@
 <html lang="en">
  <head>
   <meta charset="utf-8"/>
-  <title>
-   Gallery - Victory Art Group
-  </title>
+  <title>Gallery - Victory Art Group</title>
   <style>
+/* ---------- Filter Bar ---------- */
 .filter {
     text-align: center;
     background-color: #fff;
@@ -14,13 +13,11 @@
     margin-bottom: 1.5em;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
-
 .filter label {
     font-size: 1.1em;
     margin-right: 0.5em;
     color: #333;
 }
-
 .filter select {
     padding: 0.5em 1em;
     font-size: 1em;
@@ -30,31 +27,29 @@
     cursor: pointer;
     transition: 0.3s;
 }
-
 .filter select:hover {
     border-color: #666;
 }
 
+/* ---------- Layout & Gallery ---------- */
+body { 
+    font-family: Arial, sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    background: linear-gradient(to bottom right, #f7f8fa, #eaeaea); 
+}
+nav a.disabled { color: #aaa; pointer-events: none;}
+header, footer { background-color: #333; color: white; padding: 1em; text-align: center; }
+nav { background-color: #444; display: flex; justify-content: center; }
+nav a { color: white; padding: 1em; text-decoration: none; }
+nav a:hover { background-color: #555; }
+.content { padding: 2em; }
 
-
-
-
-
-
-   
-   body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
-        nav a.disabled { color: #aaa; pointer-events: none;}
-        header, footer { background-color: #333; color: white; padding: 1em; text-align: center; }
-        nav { background-color: #444; display: flex; justify-content: center; }
-        nav a { color: white; padding: 1em; text-decoration: none; }
-        nav a:hover { background-color: #555; }
-        .content { padding: 2em; }
-   .gallery {
+.gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5em;
 }
-
 .gallery-item {
     background-color: #fff;
     border-radius: 10px;
@@ -62,18 +57,16 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .gallery-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-
 .gallery-item img {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    animation: fadeIn 0.6s ease-in;
 }
-
 .caption {
     text-align: center;
     font-size: 0.9em;
@@ -81,27 +74,23 @@
     color: #444;
     background-color: #fafafa;
 }
-
-
-
-
-
-.gallery-item img {
-    animation: fadeIn 0.6s ease-in;
-}
-
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
 }
-   
-body {
-    background: linear-gradient(to bottom right, #f7f8fa, #eaeaea);
-}
 
-        /* Modal styles */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; 
-                 overflow: auto; background-color: rgba(0,0,0,0.8); }
+/* ---------- Modal ---------- */
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.8); 
+}
 .modal-content {
     background-color: #fff;
     margin: 5% auto;
@@ -119,200 +108,156 @@ body {
     display: block;
     margin: 0 auto;
 }
-
-        .close { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
-        .close:hover { color: black; }
-        .art-details { margin-top: 1em; font-size: 0.95em; }
+.close { 
+    color: #aaa; 
+    position: absolute; 
+    top: 10px; 
+    right: 20px; 
+    font-size: 28px; 
+    font-weight: bold; 
+    cursor: pointer; 
+}
+.close:hover { color: black; }
+.art-details { margin-top: 1em; font-size: 0.95em; }
   </style>
  </head>
+
  <body>
   <header>
-   <h1>
-    Victory Art Group Gallery
-   </h1>
+   <h1>Victory Art Group Gallery</h1>
   </header>
+
   <nav>
    <a href="home.html">Home</a>
    <a href="#" class="disabled">Gallery</a>
    <a href="events.html">Events</a>
   </nav>
+
   <div class="content">
+   <!-- Filter Dropdown -->
    <div class="filter">
-  <label for="yearFilter"><strong>Filter by Year Level:</strong></label>
-  <select id="yearFilter" onchange="filterGallery()">
-    <option value="all">All</option>
-    <option value="Year 7">Year 7</option>
-    <option value="Year 8">Year 8</option>
-    <option value="Year 9">Year 9</option>
-    <option value="Year 10">Year 10</option>
-    <option value="Year 11">Year 11</option>
-    <option value="Year 12">Year 12</option>
-  </select>
-</div>
-
-
-
-
-   
-   <div class="gallery">
-    <!-- Gallery Items -->
-    <div class="gallery-item" data-year="Year 12" onclick="openModal(0)">
-     <img alt="Artwork 1" src="MonaLisa.jpg"/>
-     <div class="caption">
-      Leonardo da Vinci
-     </div>
-    </div>
-    <div class="gallery-item" data-year="Year 12" onclick="openModal(1)">
-     <img alt="Artwork 2" src="StarryNight.jpg"/>
-     <div class="caption">
-      Vincent van Gogh
-     </div>
-    </div>
-    <div class="gallery-item" data-year="Year 11" onclick="openModal(2)">
-     <img alt="Artwork 3" src="VincentVanGogh.jpg"/>
-     <div class="caption">
-      Vincent Van Gogh
-     </div>
-    </div>
-    
-    <div class="gallery-item" data-year="Year 8" onclick="openModal(3)">
-     <img alt="Artwork 4" src="GirlWithAPearlEarring.webp"/>
-     <div class="caption">
-      Johannes Vermeer
-     </div>
-    </div>
-
-    <div class="gallery-item" data-year="Year 8" onclick="openModal(4)">
-     <img alt="Artwork 4" src="GirlWithAPearlEarring.webp"/>
-     <div class="caption">
-      Johannes Vermeer
-     </div>
-    </div>
-
-    <div class="gallery-item" data-year="Year 8" onclick="openModal(5)">
-     <img alt="Artwork 4" src="GirlWithAPearlEarring.webp"/>
-     <div class="caption">
-      Johannes Vermeer
-     </div>
-    </div>
-    
+    <label for="yearFilter"><strong>Filter by Year Level:</strong></label>
+    <select id="yearFilter" onchange="filterGallery()">
+      <option value="all">All</option>
+      <option value="Year 7">Year 7</option>
+      <option value="Year 8">Year 8</option>
+      <option value="Year 9">Year 9</option>
+      <option value="Year 10">Year 10</option>
+      <option value="Year 11">Year 11</option>
+      <option value="Year 12">Year 12</option>
+    </select>
    </div>
+
+   <!-- Gallery Container -->
+   <div class="gallery" id="galleryContainer"></div>
   </div>
+
   <!-- Modal -->
   <div class="modal" id="artModal">
    <div class="modal-content">
-    <span class="close" onclick="closeModal()">
-     ×
-    </span>
-    <img alt="Artwork" id="modalImage" src=""/>
-    <div class="art-details" id="artDetails">
-    </div>
+    <span class="close" onclick="closeModal()">×</span>
+    <img id="modalImage" alt="Artwork">
+    <div class="art-details" id="artDetails"></div>
    </div>
   </div>
+
   <footer>
-   <p>
-    © 2025 Victory Art Group | Contact us at victoryartgroup@victorycollege.com
-   </p>
+   <p>© 2025 Victory Art Group | Contact us at victoryartgroup@victorycollege.com</p>
   </footer>
+
   <script>
-   const artworks = [
-        {
-            src: "MonaLisa.jpg",
-            title: "Mona Lisa",
-            artist: "Leonardo da Vinci.",
-            description: "A Portrait depicting a woman believed to be Lisa Gherardini",
-            year: "1503",
-            medium: "Oil on Panel"
-        },
-        {
-            src: "StarryNight.jpg",
-            title: "Starry Night",
-            artist: "Vincent Van Gogh.",
-            description: "A painting that shows a night sky filled with swirling stars, a bright crescent moon, and a small village below.",
-            year: "1889",
-            medium: "oil-on-canvas"
-        },
-        {
-            src: "VincentVanGogh.jpg",
-            title: "Vincent Van Gogh",
-            artist: "Vincent Van Gogh",
-            description: "A self Portrait.",
-            year: "1853",
-            medium: "oil on cardboard"
-        },
-        {
-            src: "GirlWithAPearlEarring.webp",
-            title: "Girl With A Pearl Earring",
-            artist: "johannes vermeer.",
-            description: "",
-            year: "2025",
-            medium: "Oil on canvas"
-        },
-        {
-            src: "GirlWithAPearlEarring.webp",
-            title: "Girl With A Pearl Earring",
-            artist: "johannes vermeer.",
-            description: "",
-            year: "2025",
-            medium: "Oil on canvas"
-        },
-        {
-            src: "GirlWithAPearlEarring.webp",
-            title: "Girl With A Pearl Earring",
-            artist: "johannes vermeer.",
-            description: "",
-            year: "2025",
-            medium: "Oil on canvas"
-        },
-    ];
-
-    function openModal(index) {
-        const modal = document.getElementById('artModal');
-        const modalImage = document.getElementById('modalImage');
-        const artDetails = document.getElementById('artDetails');
-
-        const art = artworks[index];
-        modalImage.src = art.src;
-        artDetails.innerHTML = `
-            <h3>${art.title}</h3>
-            <p><strong>Artist:</strong> ${art.artist}</p>
-            <p><strong>Year:</strong> ${art.year}</p>
-            <p><strong>Medium:</strong> ${art.medium}</p>
-            <p>${art.description}</p>
-        `;
-
-        modal.style.display = 'block';
+  // --- ARTWORK LIST ---
+  const artworks = [
+    {
+      src: "MonaLisa.jpg",
+      title: "Mona Lisa",
+      artist: "Leonardo da Vinci",
+      description: "A portrait depicting a woman believed to be Lisa Gherardini.",
+      year: "1503",
+      medium: "Oil on Panel",
+      level: "Year 12"
+    },
+    {
+      src: "StarryNight.jpg",
+      title: "Starry Night",
+      artist: "Vincent van Gogh",
+      description: "A night sky filled with swirling stars, a crescent moon, and a quiet village below.",
+      year: "1889",
+      medium: "Oil on Canvas",
+      level: "Year 11"
+    },
+    {
+      src: "VincentVanGogh.jpg",
+      title: "Self Portrait",
+      artist: "Vincent van Gogh",
+      description: "A self portrait showing Van Gogh’s emotional expression through vivid brushwork.",
+      year: "1889",
+      medium: "Oil on Cardboard",
+      level: "Year 11"
+    },
+    {
+      src: "GirlWithAPearlEarring.webp",
+      title: "Girl With A Pearl Earring",
+      artist: "Johannes Vermeer",
+      description: "A famous painting sometimes called the 'Mona Lisa of the North.'",
+      year: "1665",
+      medium: "Oil on Canvas",
+      level: "Year 8"
     }
+  ];
 
-    function closeModal() {
-        document.getElementById('artModal').style.display = 'none';
-    }
+  // --- AUTOMATIC GALLERY CREATION ---
+  const galleryContainer = document.getElementById("galleryContainer");
+  artworks.forEach((art, index) => {
+    const item = document.createElement("div");
+    item.classList.add("gallery-item");
+    item.setAttribute("data-year", art.level);
+    item.setAttribute("onclick", `openModal(${index})`);
+    item.innerHTML = `
+      <img src="${art.src}" alt="${art.title}">
+      <div class="caption">${art.artist}</div>
+    `;
+    galleryContainer.appendChild(item);
+  });
 
-    // Close modal on outside click
-    window.onclick = function(event) {
-        const modal = document.getElementById('artModal');
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+  // --- MODAL LOGIC ---
+  function openModal(index) {
+      const modal = document.getElementById('artModal');
+      const modalImage = document.getElementById('modalImage');
+      const artDetails = document.getElementById('artDetails');
+      const art = artworks[index];
+
+      modalImage.src = art.src;
+      artDetails.innerHTML = `
+          <h3>${art.title}</h3>
+          <p><strong>Artist:</strong> ${art.artist}</p>
+          <p><strong>Year:</strong> ${art.year}</p>
+          <p><strong>Medium:</strong> ${art.medium}</p>
+          <p>${art.description}</p>
+      `;
+      modal.style.display = 'block';
+  }
+
+  function closeModal() {
+      document.getElementById('artModal').style.display = 'none';
+  }
+
+  window.onclick = function(event) {
+      const modal = document.getElementById('artModal');
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+
+  // --- FILTER FUNCTION ---
+  function filterGallery() {
+      const filter = document.getElementById("yearFilter").value;
+      const items = document.getElementsByClassName("gallery-item");
+      for (let i = 0; i < items.length; i++) {
+          const year = items[i].getAttribute("data-year");
+          items[i].style.display = (filter === "all" || year === filter) ? "block" : "none";
+      }
+  }
   </script>
-
-
-  <script>
-function filterGallery() {
-    const filter = document.getElementById("yearFilter").value;
-    const items = document.getElementsByClassName("gallery-item");
-
-    for (let i = 0; i < items.length; i++) {
-        const year = items[i].getAttribute("data-year");
-        if (filter === "all" || year === filter) {
-            items[i].style.display = "block";
-        } else {
-            items[i].style.display = "none";
-        }
-    }
-}
-</script>
-
  </body>
 </html>
