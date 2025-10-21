@@ -17,6 +17,59 @@
         .event-info { margin-top: 1em; line-height: 1.6; }
         .event-image { max-width: 100%; border-radius: 10px; margin-top: 1em; }
         .how-to-join { background-color: #eef6ff; padding: 1.5em; border-left: 5px solid #4285f4; border-radius: 6px; }
+
+        /* Booking Section */
+        .booking-section {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 10px;
+            margin-top: 2em;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8em;
+        }
+
+        .booking-form label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .booking-form input,
+        .booking-form textarea,
+        .booking-form button {
+            padding: 0.7em;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        .booking-form input:focus,
+        .booking-form textarea:focus {
+            border-color: #555;
+            outline: none;
+        }
+
+        .booking-form button {
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            transition: 0.3s;
+        }
+
+        .booking-form button:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
@@ -50,6 +103,28 @@
         <p>If you're a student artist and want to join our exhibition, simply email a photo of your artwork along with your full name, year level, and a short description of your work.</p>
         <p><strong>Email:</strong> victoryartgroup@victorycollege.com</p>
     </div>
+
+    <!-- Booking Section -->
+    <div class="booking-section">
+        <h3>Book Your Spot</h3>
+        <p>If you’d like to attend the art exhibition, please fill out the form below to let us know you’re coming.</p>
+
+        <form class="booking-form" onsubmit="return confirmBooking();">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="guests">Number of Guests:</label>
+            <input type="number" id="guests" name="guests" min="1" max="10" required>
+
+            <label for="notes">Additional Information:</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Any special requests or notes?"></textarea>
+
+            <button type="submit">Submit Booking</button>
+        </form>
+    </div>
 </div>
 
 <footer>
@@ -57,30 +132,33 @@
 </footer>
     
 <script>
-    // Set the date of the event
+    // Countdown Timer
     const eventDate = new Date("Nov 20, 2025 16:00:00").getTime();
-
-    // Update the countdown every 1 second
     const countdownFunction = setInterval(function() {
         const now = new Date().getTime();
         const distance = eventDate - now;
 
-        // Time calculations
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Display the result
         document.getElementById("countdown").innerHTML = 
             days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-        // If the countdown is over
         if (distance < 0) {
             clearInterval(countdownFunction);
             document.getElementById("countdown").innerHTML = "The exhibition has started!";
         }
     }, 1000);
+
+    // Booking Form Confirmation
+    function confirmBooking() {
+        const name = document.getElementById("name").value;
+        const guests = document.getElementById("guests").value;
+        alert(`Thank you, ${name}! Your booking for ${guests} people has been received.`);
+        return false; // Stops the page from refreshing
+    }
 </script>
 
 </body>
